@@ -44,7 +44,7 @@ jobs:
           prerelease: false
 
       - name: Upload Release Asset Raspberry
-        id: upload-release-asset
+        id: upload-release-asset-raspberry
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -56,7 +56,7 @@ jobs:
           asset_name: speedtest-wrapper.raspberry.${{ github.ref }}
 
       - name: Upload Release Linux amd64
-        id: upload-release-asset
+        id: upload-release-asset-linux-amd64
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
