@@ -1,0 +1,40 @@
+{
+    "type": "result",
+    "timestamp": "2020-11-07T17:35:46Z",
+    "ping": {
+        "jitter": 0.86099999999999999,
+        "latency": 12.089
+    },
+    "download": {
+        "bandwidth": 15089010,
+        "bytes": 219807848,
+        "elapsed": 15004
+    },
+    "upload": {
+        "bandwidth": 1187275,
+        "bytes": 7402665,
+        "elapsed": 6213
+    },
+    "packetLoss": 0,
+    "isp": "Claro NET",
+    "interface": {
+        "internalIp": "192.168.100.194",
+        "name": "wlp2s0",
+        "macAddr": "0C:96:E6:EB:B0:AB",
+        "isVpn": false,
+        "externalIp": "177.192.137.33"
+    },
+    "server": {
+        "id": 22448,
+        "name": "AFINET",
+        "location": "Duque de Caxias",
+        "country": "Brazil",
+        "host": "test.afinet.com.br",
+        "port": 8080,
+        "ip": "177.10.199.30"
+    },
+    "result": {
+        "id": "21a449c9-011c-45fd-98c7-4d7a58738feb",
+        "url": "https://www.speedtest.net/result/c/21a449c9-011c-45fd-98c7-4d7a58738feb"
+    }
+}
