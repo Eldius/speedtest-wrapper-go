@@ -32,6 +32,7 @@ func SetDefaults() {
 
 func InitConfig(cfgFile string) {
 	BindEnvVars()
+	SetDefaults()
 	if cfgFile != "" {
 		// Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
@@ -45,10 +46,11 @@ func InitConfig(cfgFile string) {
 
 		// Search config in home directory with name ".raspberry-network-monitor" (without extension).
 		//viper.AddConfigPath(home)
-		viper.AddConfigPath(filepath.Join(home, ".network-monitor"))
-		viper.AddConfigPath("/etc/network-monitor")
-		viper.SetConfigName("monitor")
+		viper.AddConfigPath(filepath.Join(home, ".speedtest-wrapper"))
+		viper.AddConfigPath("/etc/speedtest-wrapper")
+		viper.SetConfigName("config")
 		viper.SetConfigType("yml")
+		viper.SetConfigType("yaml")
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match
