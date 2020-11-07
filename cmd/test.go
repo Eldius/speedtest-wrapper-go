@@ -18,6 +18,8 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/Eldius/speedtest-wrapper-go/config"
+	"github.com/Eldius/speedtest-wrapper-go/mqttclient"
 	"github.com/Eldius/speedtest-wrapper-go/speedtest"
 	"github.com/spf13/cobra"
 )
@@ -55,11 +57,19 @@ server: %s
 				r.Ping.Jitter,
 				r.PacketLoss,
 			)
-		}
 
+			if *testPublish {
+				mqttclient.SendTestResult(r.CreateSummary(), config.AppConfig().MQTT)
+			}
+		}
 	},
 }
 
+var (
+	testPublish *bool
+)
+
 func init() {
 	rootCmd.AddCommand(testCmd)
+	testPublish = testCmd.Flags().BoolP("publish", "p", false, "Publish to MQTT broker")
 }

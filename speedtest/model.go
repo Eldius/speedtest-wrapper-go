@@ -55,3 +55,16 @@ func (s *SpeedtestResult) UploadInMbps() float64 {
 func (s *SpeedResult) BandwidthInMbps() float64 {
 	return float64(s.Bandwidth) / float64(125000)
 }
+
+func (s *SpeedtestResult) CreateSummary() map[string]interface{} {
+	return map[string]interface{}{
+		"download":      s.DownloadInMbps(),
+		"download_unit": "mbps",
+		"upload":        s.UploadInMbps(),
+		"upload_unit":   "mbps",
+		"ping":          s.Ping.Latency,
+		"jitter":        s.Ping.Jitter,
+		"packet_loss":   s.PacketLoss,
+		"timestamp":     time.Now(),
+	}
+}
