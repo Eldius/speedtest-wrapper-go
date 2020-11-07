@@ -1,0 +1,10 @@
+---
+cfg:
+  MQTT:
+    host: localhost
+    port: 
+    user: user
+    pass: pass
+    clientName: speedtest_wrapper
+    topic: speedtest_wrapper/tv_room
+    qos: 1
