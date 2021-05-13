@@ -40,3 +40,6 @@ vagrantlibvirt: vagrantclean build
 	cp config/samples/config.yml install_sample/.tmp/config.yml
 	cp install_sample/scripts/*.sh install_sample/.tmp/
 	cd install_sample ; vagrant up --provider=libvirt
+
+molecule:
+	cd install_sample/ansible/roles/setup_speedtest_wrapper ; pwd ; molecule test

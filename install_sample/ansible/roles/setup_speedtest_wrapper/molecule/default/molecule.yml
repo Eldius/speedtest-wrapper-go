@@ -1,0 +1,32 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint: |
+  yamllint .
+  ansible-lint
+  flake8
+platforms:
+  - name: ubuntu-18.04
+    image: ubuntu:18.04
+    env:
+      container: docker
+  - name: ubuntu-20.04
+    image: ubuntu:20.04
+    env:
+      container: docker
+  # - name: ubuntu-20.10
+  #   image: ubuntu:20.10
+  #   env:
+  #     container: docker
+  # - name: ubuntu-21.04
+  #   image: ubuntu:21.04
+  #   env:
+  #     container: docker
+provisioner:
+  name: ansible
+verifier:
+  name: testinfra
+  options:
+    s: true

@@ -8,7 +8,9 @@ ls -lha /etc/systemd/system/speedtest.service
 
 cat /etc/systemd/system/speedtest.service
 
-
+sudo systemctl enable speedtest.service
+sudo systemctl enable speedtest.timer
+sudo systemctl start speedtest.timer
 
 #cat <<EOF > /etc/systemd/system/speedtest.service
 ##########################################

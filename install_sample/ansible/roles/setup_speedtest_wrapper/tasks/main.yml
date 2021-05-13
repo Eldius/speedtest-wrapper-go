@@ -1,0 +1,23 @@
+---
+# tasks file for setup_speedtest_wrapper
+- name: Add app user
+  ansible.builtin.user:
+    name: "{{ app_user }}"
+    shell: /bin/bash
+    system: True
+
+- name: Service file
+  ansible.builtin.template:
+    src: speedtest.service
+    dest: "/etc/systemd/system/{{ service_name }}.service"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+
+- name: Timer file
+  ansible.builtin.template:
+    src: speedtest.timer
+    dest: "/etc/systemd/system/{{ service_name }}.timer"
+    owner: "root"
+    group: "root"
+    mode: "0644"

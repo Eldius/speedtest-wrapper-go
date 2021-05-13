@@ -1,0 +1,20 @@
+#########################################
+# /etc/systemd/system/speedtest.service #
+#########################################
+#                                       #
+# Network quality monitor service       #
+#                                       #
+#########################################
+
+[Unit]
+Description=Logs system statistics to the systemd journal
+Wants=speedtest.timer
+
+[Service]
+User={{ app_user }}
+Type=oneshot
+Environment=HOME={{ install_dir }}
+ExecStart={{ install_dir }}/speedtest-wrapper-go test -p --config {{ install_dir }}/config.yml
+
+[Install]
+WantedBy=multi-user.target

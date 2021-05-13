@@ -2,3 +2,7 @@ bin/
 *.log
 .tmp/
 .vagrant/
+__pycache__/
+*.pyc
+.cache/
+.vscode/

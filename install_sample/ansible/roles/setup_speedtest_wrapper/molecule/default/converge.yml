@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include setup_speedtest_wrapper"
+      include_role:
+        name: "setup_speedtest_wrapper"

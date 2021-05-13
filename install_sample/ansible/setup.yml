@@ -1,0 +1,6 @@
+---
+- name: Setup Speedtest wrapper service
+  hosts: all
+  remote_user: root
+  roles:
+    - setup_speedtest_wrapper

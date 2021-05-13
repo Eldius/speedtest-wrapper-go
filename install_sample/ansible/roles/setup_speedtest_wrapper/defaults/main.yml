@@ -1,0 +1,6 @@
+---
+# defaults file for setup_speedtest_wrapper
+install_dir: /app/speedtest_wrapper
+service_timer_calendar: "*-*-* *:*:00"
+service_name: speedtest
+app_user: speedtest
