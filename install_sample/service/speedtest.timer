@@ -1,0 +1,18 @@
+#########################################
+# /etc/systemd/system/speedtest.timer   #
+#########################################
+#                                       #
+# Network quality monitor timer         #
+#                                       #
+#########################################
+
+[Unit]
+Description=Logs some system statistics to the systemd journal
+Requires=speedtest.service
+
+[Timer]
+Unit=speedtest.service
+OnCalendar=*-*-* *:*:00
+
+[Install]
+WantedBy=timers.target

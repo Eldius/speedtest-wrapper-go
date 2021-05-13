@@ -1,0 +1,20 @@
+#########################################
+# /etc/systemd/system/speedtest.service #
+#########################################
+#                                       #
+# Network quality monitor service       #
+#                                       #
+#########################################
+
+[Unit]
+Description=Logs system statistics to the systemd journal
+Wants=speedtest.timer
+
+[Service]
+Type=oneshot
+#Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+Environment=HOME=/app
+ExecStart=/app/start.sh
+
+[Install]
+WantedBy=multi-user.target

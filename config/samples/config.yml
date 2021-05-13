@@ -1,10 +1,10 @@
 ---
 cfg:
   MQTT:
-    host: localhost
-    port: 
-    user: user
-    pass: pass
+    host: 192.168.100.195
+    port: 1883
+    user:
+    pass:
     clientName: speedtest_wrapper
-    topic: speedtest_wrapper/tv_room
+    topic: /speedtest_wrapper/tv_room
     qos: 1

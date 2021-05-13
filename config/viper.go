@@ -46,6 +46,7 @@ func InitConfig(cfgFile string) {
 
 		// Search config in home directory with name ".raspberry-network-monitor" (without extension).
 		//viper.AddConfigPath(home)
+		viper.AddConfigPath(home)
 		viper.AddConfigPath(filepath.Join(home, ".speedtest-wrapper"))
 		viper.AddConfigPath("/etc/speedtest-wrapper")
 		viper.SetConfigName("config")
