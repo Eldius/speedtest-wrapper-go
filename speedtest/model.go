@@ -74,3 +74,23 @@ func (s *SpeedtestResult) CreateSummary() map[string]interface{} {
 		"timestamp":   time.Now(),
 	}
 }
+
+func CreateErrorSummary(err error) map[string]interface{} {
+	return map[string]interface{}{
+		"download": map[string]interface{}{
+			"bandwidth": 0,
+			"unit":      "mbps",
+		},
+		"upload": map[string]interface{}{
+			"bandwidth": 0,
+			"unit":      "mbps",
+		},
+		"ping": map[string]interface{}{
+			"latency": 0,
+			"jitter":  0,
+		},
+		"packet_loss": 0,
+		"timestamp":   time.Now(),
+		"error":       err.Error(),
+	}
+}
