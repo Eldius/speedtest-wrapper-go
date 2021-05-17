@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	configSample = "samples/config.yml"
+	configSample = "samples/config_test.yml"
 )
 
 func setup(t *testing.T) {
