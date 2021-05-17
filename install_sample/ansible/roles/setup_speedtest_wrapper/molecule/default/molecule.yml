@@ -12,8 +12,9 @@ platforms:
     image: ubuntu:18.04
     env:
       container: docker
+    privileged: false
   - name: ubuntu-20.04
-    image: ubuntu:20.04
+    image: eldius/systemd:ubuntu-20.04
     env:
       container: docker
   # - name: ubuntu-20.10

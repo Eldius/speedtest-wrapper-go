@@ -4,3 +4,12 @@ install_dir: /app/speedtest_wrapper
 service_timer_calendar: "*-*-* *:*:00"
 service_name: speedtest
 app_user: speedtest
+mqtt_host:
+mqtt_port: 1883
+mqtt_user: ""
+mqtt_pass: ""
+mqtt_client_name: speedtest_wrapper
+mqtt_topic: topic_name
+mqtt_qos: 1
+
+app_binary_path: "../../../../bin/speedtest-wrapper-go"

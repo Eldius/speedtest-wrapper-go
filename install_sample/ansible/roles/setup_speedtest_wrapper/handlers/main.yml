@@ -1,2 +1,13 @@
 ---
 # handlers file for setup_speedtest_wrapper
+- name: Restart SpeedtestWrapper service
+  ansible.builtin.systemd:
+    name: speedtest.service
+    state: restarted
+    enabled: True
+
+- name: Restart SpeedtestWrapper timer
+  ansible.builtin.systemd:
+    name: speedtest.timer
+    state: restarted
+    enabled: True

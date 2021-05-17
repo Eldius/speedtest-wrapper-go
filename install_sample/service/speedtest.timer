@@ -7,7 +7,7 @@
 #########################################
 
 [Unit]
-Description=Logs some system statistics to the systemd journal
+Description=Network quality monitor timer
 Requires=speedtest.service
 
 [Timer]

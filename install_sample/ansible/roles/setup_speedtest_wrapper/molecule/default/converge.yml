@@ -5,3 +5,5 @@
     - name: "Include setup_speedtest_wrapper"
       include_role:
         name: "setup_speedtest_wrapper"
+      vars:
+        mqtt_host: 127.0.0.1

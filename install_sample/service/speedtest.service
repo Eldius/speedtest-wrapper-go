@@ -7,12 +7,11 @@
 #########################################
 
 [Unit]
-Description=Logs system statistics to the systemd journal
+Description=Network quality monitor service
 Wants=speedtest.timer
 
 [Service]
 Type=oneshot
-#Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 Environment=HOME=/app
 ExecStart=/app/start.sh
 

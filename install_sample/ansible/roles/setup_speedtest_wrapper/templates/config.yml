@@ -1,0 +1,10 @@
+---
+cfg:
+  MQTT:
+    host: {{ mqtt_host }}
+    port: {{ mqtt_port }}
+    user: {{ mqtt_user }}
+    pass: {{ mqtt_pass }}
+    clientName: {{ mqtt_client_name }}
+    topic: {{ mqtt_topic }}
+    qos: {{ mqtt_qos }}

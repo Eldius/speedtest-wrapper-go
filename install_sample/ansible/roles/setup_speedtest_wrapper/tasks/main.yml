@@ -5,6 +5,9 @@
     name: "{{ app_user }}"
     shell: /bin/bash
     system: True
+  notify:
+    - Restart SpeedtestWrapper service
+    - Restart SpeedtestWrapper timer
 
 - name: Service file
   ansible.builtin.template:
@@ -13,6 +16,9 @@
     owner: "root"
     group: "root"
     mode: "0644"
+  notify:
+    - Restart SpeedtestWrapper service
+    - Restart SpeedtestWrapper timer
 
 - name: Timer file
   ansible.builtin.template:
@@ -21,3 +27,31 @@
     owner: "root"
     group: "root"
     mode: "0644"
+
+- name: Create installation folder
+  ansible.builtin.file:
+    path: "{{ install_dir }}"
+    state: directory
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+    mode: "0644"
+
+- name: Config file
+  ansible.builtin.template:
+    src: config.yml
+    dest: "{{ install_dir }}/config.yml"
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+    mode: "0644"
+
+- name: Debug current location
+  debug:
+    msg: "{{ lookup('env', 'PWD') }}"
+
+- name: Copy app binary
+  ansible.builtin.copy:
+    src: "{{ app_binary_path }}"
+    dest: "{{ install_dir }}"
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+    mode: "0744"
