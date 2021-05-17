@@ -14,6 +14,26 @@ clean:
 bin/speedtest-wrapper-go:
 	go build -v -o bin/speedtest-wrapper-go -a -ldflags '-extldflags "-static"'  -ldflags "-X 'github.com/Eldius/speedtest-wrapper-go/config.BuildDate=$(date +"%Y-%m-%dT%H:%M:%S%:z")' -X 'github.com/Eldius/speedtest-wrapper-go/config.Version=$(git rev-parse --short HEAD)'" .
 
+bin/speedtest-wrapper-go.linux.armv7:
+	GOOS=linux \
+	GOARCH=arm \
+	GOARM=7 \
+	go build -v -o bin/speedtest-wrapper-go.linux.armv7 -a -ldflags '-extldflags "-static"'  -ldflags "-X 'github.com/Eldius/speedtest-wrapper-go/config.BuildDate=$(date +"%Y-%m-%dT%H:%M:%S%:z")' -X 'github.com/Eldius/speedtest-wrapper-go/config.Version=$(git rev-parse --short HEAD)'" .
+
+bin/speedtest-wrapper-go.linux.amd64:
+	GOOS=linux \
+	GOARCH=amd64 \
+	go build -v -o bin/speedtest-wrapper-go.linux.amd64 -a -ldflags '-extldflags "-static"'  -ldflags "-X 'github.com/Eldius/speedtest-wrapper-go/config.BuildDate=$(date +"%Y-%m-%dT%H:%M:%S%:z")' -X 'github.com/Eldius/speedtest-wrapper-go/config.Version=$(git rev-parse --short HEAD)'" .
+
+bin/speedtest-wrapper-go.linux.arm64:
+	GOOS=linux \
+	GOARCH=arm64 \
+	GOARM=7 \
+	go build -v -o bin/speedtest-wrapper-go.linux.arm64 -a -ldflags '-extldflags "-static"'  -ldflags "-X 'github.com/Eldius/speedtest-wrapper-go/config.BuildDate=$(date +"%Y-%m-%dT%H:%M:%S%:z")' -X 'github.com/Eldius/speedtest-wrapper-go/config.Version=$(git rev-parse --short HEAD)'" .
+
+buildall: clean bin/speedtest-wrapper-go.linux.amd64 bin/speedtest-wrapper-go.linux.armv7 bin/speedtest-wrapper-go.linux.arm64
+	@echo "Build with success"
+
 build: bin/speedtest-wrapper-go
 	@echo "Build with success"
 
@@ -41,5 +61,5 @@ vagrantlibvirt: vagrantclean build
 	cp install_sample/scripts/*.sh install_sample/.tmp/
 	cd install_sample ; vagrant up --provider=libvirt
 
-molecule:
+molecule: build
 	cd install_sample/ansible/roles/setup_speedtest_wrapper ; pwd ; molecule test
