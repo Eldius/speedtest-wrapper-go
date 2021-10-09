@@ -1,6 +1,10 @@
 package speedtest
 
-import "time"
+import (
+	"bytes"
+	"text/template"
+	"time"
+)
 
 type SpeedtestResult struct {
 	Type       string      `json:"type"`
@@ -58,6 +62,7 @@ func (s *SpeedResult) BandwidthInMbps() float64 {
 
 func (s *SpeedtestResult) CreateSummary() map[string]interface{} {
 	return map[string]interface{}{
+		"server_id": s.Server.ID,
 		"download": map[string]interface{}{
 			"bandwidth": s.DownloadInMbps(),
 			"unit":      "mbps",
@@ -72,11 +77,22 @@ func (s *SpeedtestResult) CreateSummary() map[string]interface{} {
 		},
 		"packet_loss": s.PacketLoss,
 		"timestamp":   time.Now(),
+		"server": map[string]interface{}{
+			"id":       s.Server.ID,
+			"name":     s.Server.Name,
+			"country":  s.Server.Country,
+			"location": s.Server.Location,
+			"host":     s.Server.Host,
+			"port":     s.Server.Port,
+			"ip":       s.Server.IP,
+		},
+		"image_url": s.Result.URL,
 	}
 }
 
-func CreateErrorSummary(err error) map[string]interface{} {
+func CreateErrorSummary(err error, s Server) map[string]interface{} {
 	return map[string]interface{}{
+		"server_id": s.ID,
 		"download": map[string]interface{}{
 			"bandwidth": 0,
 			"unit":      "mbps",
@@ -93,4 +109,35 @@ func CreateErrorSummary(err error) map[string]interface{} {
 		"timestamp":   time.Now(),
 		"error":       err.Error(),
 	}
+}
+
+type ServerList struct {
+	Type      string    `json:"type"`
+	Timestamp time.Time `json:"timestamp"`
+	Servers   []Server  `json:"servers"`
+}
+
+var t template.Template
+
+func init() {
+	t = *template.Must(template.New("test").Parse(`---
+{{ .Server.Name }}
+- ISP: {{ .Isp }}
+- server:      {{ .Server.Name }}
+- location:    {{ .Server.Location }}
+- download:    {{ .DownloadInMbps }} mbps => megabits/sec ({{ .Download.Bandwidth }} bps => bytes/sec)
+- upload:      {{ .UploadInMbps }} mbps => megabits/sec ({{ .Upload.Bandwidth }} bps => bytes/sec)
+- ping:        {{ .Ping.Latency }} ms
+- jitter:      {{ .Ping.Jitter }} ms
+- packet loss: {{ .PacketLoss }} %%
+- result:      {{ .Result.URL }}
+`))
+}
+
+func (r *SpeedtestResult) ToString() string {
+	var tpl bytes.Buffer
+	if err := t.Execute(&tpl, r); err != nil {
+		return err.Error()
+	}
+	return tpl.String()
 }

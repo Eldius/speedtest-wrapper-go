@@ -1,0 +1,86 @@
+{
+    "type": "serverList",
+    "timestamp": "2021-10-09T18:24:02Z",
+    "servers": [
+        {
+            "id": 38936,
+            "name": "Connect Telecom",
+            "location": "São Conrado",
+            "country": "Brazil",
+            "host": "velocimetro.connect.rio.br",
+            "port": 8080
+        },
+        {
+            "id": 37774,
+            "name": "Unifibra",
+            "location": "Rio de Janeiro",
+            "country": "Brazil",
+            "host": "testspeed.unifibra.net",
+            "port": 8080
+        },
+        {
+            "id": 28683,
+            "name": "Webfiber Provedor",
+            "location": "Centro",
+            "country": "Brazil",
+            "host": "velocimetro.webfiberprovedor.net.br",
+            "port": 8080
+        },
+        {
+            "id": 35408,
+            "name": "VLC",
+            "location": "Nilopolis",
+            "country": "Brazil",
+            "host": "test.netnil.com.br",
+            "port": 8080
+        },
+        {
+            "id": 26318,
+            "name": "Falenet",
+            "location": "Nilópolis",
+            "country": "Brazil",
+            "host": "ookla.falenet.com.br",
+            "port": 8080
+        },
+        {
+            "id": 23093,
+            "name": "Digital Wave",
+            "location": "São João de Mereti",
+            "country": "Brazil",
+            "host": "speedtest.digitalwave.net.br",
+            "port": 8080
+        },
+        {
+            "id": 42051,
+            "name": "GigaSpeed",
+            "location": "São João de Meriti",
+            "country": "Brazil",
+            "host": "speedtest.gigaspeed.com.br",
+            "port": 8080
+        },
+        {
+            "id": 42980,
+            "name": "SAT Telecom - Internet Banda larga",
+            "location": "São João de Meriti",
+            "country": "Brazil",
+            "host": "speedtest.sousat.com.br",
+            "port": 8080
+        },
+        {
+            "id": 18102,
+            "name": "Claro Movel RJ1",
+            "location": "Rio de Janeiro",
+            "country": "Brazil",
+            "host": "spd2.claro.com.br",
+            "port": 8080
+        },
+        {
+            "id": 16635,
+            "name": "G8",
+            "location": "Rio de Janeiro",
+            "country": "Brazil",
+            "host": "speedtest.rjo.g8.net.br",
+            "port": 8080
+        }
+    ]
+}
