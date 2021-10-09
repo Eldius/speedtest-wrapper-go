@@ -111,6 +111,27 @@ func CreateErrorSummary(err error, s Server) map[string]interface{} {
 	}
 }
 
+func CreateErrorSummaryWithoutServerInfo(err error) map[string]interface{} {
+	return map[string]interface{}{
+		"server_id": "unknown",
+		"download": map[string]interface{}{
+			"bandwidth": 0,
+			"unit":      "mbps",
+		},
+		"upload": map[string]interface{}{
+			"bandwidth": 0,
+			"unit":      "mbps",
+		},
+		"ping": map[string]interface{}{
+			"latency": 0,
+			"jitter":  0,
+		},
+		"packet_loss": 0,
+		"timestamp":   time.Now(),
+		"error":       err.Error(),
+	}
+}
+
 type ServerList struct {
 	Type      string    `json:"type"`
 	Timestamp time.Time `json:"timestamp"`

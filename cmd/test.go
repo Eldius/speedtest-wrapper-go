@@ -23,7 +23,7 @@ speedtest-wrapper-go test
 			fmt.Println("Failed to execute test")
 			fmt.Println(err.Error())
 			if *testPublish {
-				mqttclient.SendTestResult(speedtest.CreateErrorSummary(err), config.AppConfig().MQTT)
+				mqttclient.SendTestResult(speedtest.CreateErrorSummaryWithoutServerInfo(err), config.AppConfig().MQTT)
 			}
 		} else {
 			fmt.Printf(`---
