@@ -41,12 +41,12 @@ var testNearestCmd = &cobra.Command{
 		for _, s := range servers.Servers {
 			if r, err := speedtest.TestForServer(s); err != nil {
 				fmt.Printf("Failed to execute test: %s\n", err.Error())
-				if *testPublish {
+				if *nearestPublish {
 					mqttclient.SendTestResult(speedtest.CreateErrorSummary(err, s), config.AppConfig().MQTT)
 				}
 			} else {
 				fmt.Printf(r.ToString())
-				if *testPublish {
+				if *nearestPublish {
 					mqttclient.SendTestResult(r.CreateSummary(), config.AppConfig().MQTT)
 				}
 			}
