@@ -63,6 +63,7 @@ func (s *SpeedResult) BandwidthInMbps() float64 {
 func (s *SpeedtestResult) CreateSummary() map[string]interface{} {
 	return map[string]interface{}{
 		"server_id": s.Server.ID,
+		"type":      "network",
 		"download": map[string]interface{}{
 			"bandwidth": s.DownloadInMbps(),
 			"unit":      "mbps",
@@ -93,6 +94,7 @@ func (s *SpeedtestResult) CreateSummary() map[string]interface{} {
 func CreateErrorSummary(err error, s Server) map[string]interface{} {
 	return map[string]interface{}{
 		"server_id": s.ID,
+		"type":      "network",
 		"download": map[string]interface{}{
 			"bandwidth": 0,
 			"unit":      "mbps",
