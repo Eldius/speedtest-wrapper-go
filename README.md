@@ -7,3 +7,12 @@ a database and/or post it to a MQTT broker.
 
 - `speedtest-wrapper-go`
   - `test`: actually it just execute speedtes test and display the result
+
+
+## snippets ##
+
+### mongodb raspberry ###
+
+```bash
+echo 'deb http://ftp.br.debian.org/debian stretch main' /etc/apt/sources.list.d/repo_mongodb_org_debian.list
+```
