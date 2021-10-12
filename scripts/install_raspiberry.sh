@@ -6,7 +6,10 @@ then
     exit
 fi
 
-wget "$( curl https://api.github.com/repos/eldius/speedtest-wrapper-go/releases | jq -r '. | sort_by(.created_at) | last | .assets[] | select(.name | endswith(".raspberry")) | .browser_download_url' )"
+owner=eldius
+repo=speedtest-wrapper-go
+
+wget "$( curl https://api.github.com/repos/${owner}/${repo}/releases | jq -r '. | sort_by(.created_at) | last | .assets[] | select(.name | endswith(".raspberry")) | .browser_download_url' )"
 
 mv speedtest-wrapper* speedtest-wrapper
 sudo mv speedtest-wrapper /usr/bin
