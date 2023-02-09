@@ -7,6 +7,7 @@ import (
 )
 
 type SpeedtestResult struct {
+	ID         int64       `storm:"id,increment"`
 	Type       string      `json:"type"`
 	Timestamp  time.Time   `json:"timestamp"`
 	Ping       Ping        `json:"ping"`

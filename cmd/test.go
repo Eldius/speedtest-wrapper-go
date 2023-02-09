@@ -2,9 +2,11 @@ package cmd
 
 import (
 	"fmt"
-
 	"github.com/Eldius/speedtest-wrapper-go/config"
-	"github.com/Eldius/speedtest-wrapper-go/mqttclient"
+	"github.com/Eldius/speedtest-wrapper-go/persistence"
+	"log"
+	"time"
+
 	"github.com/Eldius/speedtest-wrapper-go/speedtest"
 	"github.com/spf13/cobra"
 )
@@ -19,11 +21,19 @@ var testCmd = &cobra.Command{
 speedtest-wrapper-go test
 `,
 	Run: func(_ *cobra.Command, _ []string) {
+		repo, err := persistence.NewPersistence(config.GetDBFile())
+		if err != nil {
+			log.Fatalf("Failed to create persistence object: %v", err)
+		}
 		if r, err := speedtest.Test(); err != nil {
-			fmt.Println("Failed to execute test")
-			fmt.Println(err.Error())
+			fmt.Println("Failed to execute test:", err)
 			if *testPublish {
-				mqttclient.SendTestResult(speedtest.CreateErrorSummaryWithoutServerInfo(err), config.AppConfig().MQTT)
+				info := speedtest.SpeedtestResult{
+					Timestamp: time.Now(),
+				}
+				if err := repo.Persist(info); err != nil {
+					log.Fatalf("Failed to persist data: %v", err)
+				}
 			}
 		} else {
 			fmt.Printf(`---
@@ -47,7 +57,9 @@ server: %s
 			)
 
 			if *testPublish {
-				mqttclient.SendTestResult(r.CreateSummary(), config.AppConfig().MQTT)
+				if err := repo.Persist(*r); err != nil {
+					log.Fatalf("Failed to persist data: %v", err)
+				}
 			}
 		}
 	},

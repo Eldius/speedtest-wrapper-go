@@ -1,10 +1,3 @@
 ---
 cfg:
-  MQTT:
-    host: 192.168.100.195
-    port: 1883
-    user:
-    pass:
-    clientName: speedtest_wrapper
-    topic: /speedtest_wrapper/tv_room
-    qos: 1
+  db_file: ./speedtest.db

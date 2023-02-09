@@ -1,12 +1,7 @@
 
 .EXPORT_ALL_VARIABLES:
 
-SPEEDTEST_MQTT_HOST="192.168.100.195"
-SPEEDTEST_MQTT_PORT="1883"
-SPEEDTEST_MQTT_USER=""
-SPEEDTEST_MQTT_PASS=""
-SPEEDTEST_MQTT_CLIENTNAME="Speed_Test"
-SPEEDTEST_MQTT_TOPIC="/speedtest_wrapper/tv_room"
+SPEEDTEST_DB_FILE="./speedtest.db"
 
 clean:
 	-rm -rf bin
@@ -38,7 +33,7 @@ build: bin/speedtest-wrapper-go
 	@echo "Build with success"
 
 start:
-	go run main.go test -p --config config/samples/config.yml
+	SPEEDTEST_DB_FILE=$(SPEEDTEST_DB_FILE) go run main.go test -p --config config/samples/config.yml
 
 vagrantclean:
 	-cd install_sample ; vagrant destroy -f

@@ -2,22 +2,16 @@ package config
 
 import (
 	"fmt"
+	"github.com/mitchellh/go-homedir"
 	"log"
 	"os"
 	"path/filepath"
 
-	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/viper"
 )
 
 func BindEnvVars() {
-	bindEnv("cfg.mqtt.host", "SPEEDTEST_MQTT_HOST")
-	bindEnv("cfg.mqtt.port", "SPEEDTEST_MQTT_PORT")
-	bindEnv("cfg.mqtt.user", "SPEEDTEST_MQTT_USER")
-	bindEnv("cfg.mqtt.pass", "SPEEDTEST_MQTT_PASS")
-	bindEnv("cfg.mqtt.clientName", "SPEEDTEST_MQTT_CLIENTNAME")
-	bindEnv("cfg.mqtt.topic", "SPEEDTEST_MQTT_TOPIC")
-	bindEnv("cfg.mqtt.qos", "SPEEDTEST_MQTT_QOS")
+	bindEnv("cfg.db_file", "SPEEDTEST_DB_FILE")
 }
 
 func bindEnv(key string, envVar string) {
@@ -27,7 +21,7 @@ func bindEnv(key string, envVar string) {
 }
 
 func SetDefaults() {
-	viper.SetDefault("cfg.mqtt.port", "1883")
+	viper.SetDefault("cfg.db_file", "./speedtest.db")
 }
 
 func InitConfig(cfgFile string) {

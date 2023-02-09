@@ -8,23 +8,10 @@ import (
 )
 
 /*
-MQTTConfig is a config abstraction for the MQTT client
-*/
-type MQTTConfig struct {
-	Host       string
-	Port       string
-	User       string
-	Pass       string
-	ClientName string
-	Topic      string
-	Qos        byte
-}
-
-/*
 SpeedtestWrapperConfig is an abstraction for the app config
 */
 type SpeedtestWrapperConfig struct {
-	MQTT MQTTConfig
+	DBFile string `yaml:"db_file"`
 }
 
 /*
@@ -49,6 +36,13 @@ func WriteConfig(cfg SpeedtestWrapperConfig) string {
 		fmt.Println(string(cfgBytes))
 		return string(cfgBytes)
 	}
+}
+
+/*
+GetDBFile returns the DB file path
+*/
+func GetDBFile() string {
+	return viper.GetString("cfg.db_file")
 }
 
 var (

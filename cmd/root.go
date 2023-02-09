@@ -5,9 +5,9 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/Eldius/speedtest-wrapper-go/config"
 	"os"
 
-	"github.com/Eldius/speedtest-wrapper-go/config"
 	"github.com/spf13/cobra"
 )
 
@@ -15,7 +15,10 @@ var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "speedtest-wrapper-go",
+	Use: "speedtest-wrapper-go",
+	PersistentPreRun: func(cmd *cobra.Command, args []string) {
+		config.InitConfig(cfgFile)
+	},
 	Short: "A brief description of your application",
 	Long: `A longer description that spans multiple lines and likely contains
 examples and usage of using your application. For example:
@@ -38,20 +41,9 @@ func Execute() {
 }
 
 func init() {
-	cobra.OnInitialize(initConfig)
-
-	// Here you will define your flags and configuration settings.
-	// Cobra supports persistent flags, which, if defined here,
-	// will be global for your application.
-
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.speedtest-wrapper-go.yaml)")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-}
-
-// initConfig reads in config file and ENV variables if set.
-func initConfig() {
-	config.InitConfig(cfgFile)
 }
